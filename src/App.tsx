@@ -61,9 +61,9 @@ export default function App() {
   }, [])
 
   React.useEffect(() => {
-    console.log('TOKEN', accessToken)
-    const fetchCreateLiveness = async () => {
-
+    console.log('TOKEN 1', accessToken)
+    const fetchCreateLiveness = async (accessToken: string) => {
+      console.log('TOKEN 2', accessToken)
       fetch(
         'https://backend-api-stage.carteiraia.com/api/liveness/session',
         {
@@ -88,7 +88,7 @@ export default function App() {
     };
 
     if (accessToken)
-      fetchCreateLiveness();
+      fetchCreateLiveness(accessToken);
   }, [accessToken]);
 
   const handleAnalysisComplete = async () => {
