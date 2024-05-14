@@ -67,7 +67,6 @@ export default function App() {
         'https://backend-api-stage.carteiraia.com/api/liveness/session',
         {
           method: 'GET',
-          mode: 'cors',
           headers: {
             'Authorization': accessToken
           }
