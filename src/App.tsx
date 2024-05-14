@@ -58,11 +58,12 @@ export default function App() {
 
   React.useEffect(() => {
     setAccessToken(TOKEN);
+  }, [])
+
+  React.useEffect(() => {
+    console.log('TOKEN', accessToken)
     const fetchCreateLiveness = async () => {
-      /*
-       * This should be replaced with a real call to your own backend API
-       */
-      console.log('TOKEN', accessToken)
+
       fetch(
         'https://backend-api-stage.carteiraia.com/api/liveness/session',
         {
@@ -86,8 +87,9 @@ export default function App() {
 
     };
 
-    fetchCreateLiveness();
-  }, []);
+    if (accessToken)
+      fetchCreateLiveness();
+  }, [accessToken]);
 
   const handleAnalysisComplete = async () => {
     // const response = await fetch(
