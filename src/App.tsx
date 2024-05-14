@@ -99,7 +99,7 @@ export default function App() {
       ) : (
         <FaceLivenessDetector
           sessionId={createLivenessApiData.sessionId}
-          region="us-east-1"
+          region="sa-east-1"
           onAnalysisComplete={handleAnalysisComplete}
           onError={(error: any) => {
             console.error('ERROR', error);
