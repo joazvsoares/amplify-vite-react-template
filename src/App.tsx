@@ -62,7 +62,7 @@ export default function App() {
       /*
        * This should be replaced with a real call to your own backend API
        */
-
+      console.log('TOKEN', accessToken)
       fetch(
         'https://backend-api-stage.carteiraia.com/api/liveness/session',
         {
