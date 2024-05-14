@@ -53,6 +53,7 @@ export default function App() {
   const [loading, setLoading] = React.useState(true);
   const [createLivenessApiData, setCreateLivenessApiData] =
     React.useState<any>(null);
+  const [accessToken, setAccessToken] = React.useState('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJkMzc0ZjllOC0xNjliLTQxYjktYjYxYi0zN2I3MjA0OGYwYjkiLCJ1c2VySWQiOiJkMzc0ZjllOC0xNjliLTQxYjktYjYxYi0zN2I3MjA0OGYwYjkiLCJ0ZW5hbnRJZCI6IjA2Y2YyODJjLWNiMGYtNDAyMC1iMmZhLTI5YzE0Y2RmZjM4ZiIsImF1dGhUeXBlIjoibHVrYXMuZnJlaXJlMjAxMUBnbWFpbC5jb20iLCJpYXQiOjE3MTU2ODI1MDIsImV4cCI6MTcxNTc2ODkwMn0.QLcS9kobvwzkqZ6KRFTkjKWtAoO5P459cBh2won9uDY');
 
   React.useEffect(() => {
     const fetchCreateLiveness = async () => {
@@ -60,7 +61,13 @@ export default function App() {
        * This should be replaced with a real call to your own backend API
        */
 
-      fetch('https://backend-api-stage.carteiraia.com/api/liveness/session')
+      fetch(
+        'https://backend-api-stage.carteiraia.com/api/liveness/session',
+        {
+          headers: {
+            'Authorization': accessToken
+          }
+        })
         .then((response: any) => {
 
           if (!response.ok)
