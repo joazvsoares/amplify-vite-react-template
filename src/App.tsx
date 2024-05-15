@@ -3,7 +3,7 @@ import { Amplify } from 'aws-amplify';
 import { FaceLivenessDetector } from '@aws-amplify/ui-react-liveness';
 import { Loader, ThemeProvider } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
-import * as AWS from 'aws-sdk';
+// import * as AWS from 'aws-sdk';
 import awsexports from './aws-exports';
 
 Amplify.configure(awsexports);
