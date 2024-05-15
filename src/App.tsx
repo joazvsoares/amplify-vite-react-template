@@ -55,7 +55,7 @@ export default function App() {
   }, [accessToken]);
 
   const handleAnalysisComplete = async () => {
-    console.log('handleAnalysisComplete')
+    console.log('handleAnalysisComplete');
     var rekognition = new AWS.Rekognition();
     var params: any = {
       SessionId: sessionId
