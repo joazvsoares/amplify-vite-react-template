@@ -56,12 +56,12 @@ export default function App() {
 
   const handleAnalysisComplete = async () => {
     console.log('handleAnalysisComplete');
-    var rekognition = new AWS.Rekognition();
-    var params: any = {
-      SessionId: sessionId
-    };
-    const resp = await rekognition.getFaceLivenessSessionResults(params).promise();
-    console.log('FaceLiveness data', resp);
+    // var rekognition = new AWS.Rekognition();
+    // var params: any = {
+    //   SessionId: sessionId
+    // };
+    // const resp = await rekognition.getFaceLivenessSessionResults(params).promise();
+    // console.log('FaceLiveness data', resp);
   };
 
   return (
