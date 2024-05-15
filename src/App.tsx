@@ -2,7 +2,7 @@ import React from 'react';
 import { Amplify } from 'aws-amplify';
 import { FaceLivenessDetector } from '@aws-amplify/ui-react-liveness';
 import { Loader, ThemeProvider } from '@aws-amplify/ui-react';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 import '@aws-amplify/ui-react/styles.css';
 import awsexports from './aws-exports';
 
@@ -10,14 +10,14 @@ Amplify.configure(awsexports);
 
 export default function App() {
 
-  const location = useLocation();
+  // const location = useLocation();
   const [loading, setLoading] = React.useState(true);
   const [createLivenessApiData, setCreateLivenessApiData] =
     React.useState<any>(null);
   const [accessToken, setAccessToken] = React.useState('');
 
   React.useEffect(() => {
-    const query = new URLSearchParams(location.search);
+    const query = new URLSearchParams(window.location.search);
     if (query.has('token'))
       setAccessToken(query.get('token') as string);
     else alert('Informe o accesstoken no paramtro token');
