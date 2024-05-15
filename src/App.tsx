@@ -2,21 +2,24 @@ import React from 'react';
 import { Amplify } from 'aws-amplify';
 import { FaceLivenessDetector } from '@aws-amplify/ui-react-liveness';
 import { Loader, ThemeProvider } from '@aws-amplify/ui-react';
+import { useLocation } from 'react-router-dom';
 import '@aws-amplify/ui-react/styles.css';
 import awsexports from './aws-exports';
 
 Amplify.configure(awsexports);
-const TOKEN: string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJkMzc0ZjllOC0xNjliLTQxYjktYjYxYi0zN2I3MjA0OGYwYjkiLCJ1c2VySWQiOiJkMzc0ZjllOC0xNjliLTQxYjktYjYxYi0zN2I3MjA0OGYwYjkiLCJ0ZW5hbnRJZCI6IjA2Y2YyODJjLWNiMGYtNDAyMC1iMmZhLTI5YzE0Y2RmZjM4ZiIsImF1dGhUeXBlIjoibHVrYXMuZnJlaXJlMjAxMUBnbWFpbC5jb20iLCJpYXQiOjE3MTU2OTY3ODQsImV4cCI6MTcxNTc4MzE4NH0.npsqXMHGaIdvVo8ZlNT1kdKHW5A2iT9gRxy6RAGj2FE';
 
 export default function App() {
 
+  const location = useLocation();
   const [loading, setLoading] = React.useState(true);
   const [createLivenessApiData, setCreateLivenessApiData] =
     React.useState<any>(null);
   const [accessToken, setAccessToken] = React.useState('');
 
   React.useEffect(() => {
-    setAccessToken(TOKEN);
+    const query = new URLSearchParams(location.search);
+    if (query.has('token'))
+      setAccessToken(query.get('token') as string);
   }, [])
 
   React.useEffect(() => {
@@ -61,7 +64,7 @@ export default function App() {
         <FaceLivenessDetector
           disableStartScreen={true}
           sessionId={createLivenessApiData.sessionId}
-          region="sa-east-1"
+          region="us-east-1"
           onAnalysisComplete={handleAnalysisComplete}
           onError={(error: any) => {
             console.error('ERROR', error);
