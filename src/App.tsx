@@ -3,15 +3,14 @@ import { Amplify } from 'aws-amplify';
 import { FaceLivenessDetector } from '@aws-amplify/ui-react-liveness';
 import { Loader, ThemeProvider } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
-// import * as AWS from 'aws-sdk';
+import * as AWS from 'aws-sdk';
 import awsexports from './aws-exports';
 
 Amplify.configure(awsexports);
 
 export default function App() {
 
-  // const location = useLocation();
-  // const [sessionId, setSessionId] = React.useState<string | null>(null);
+  const [sessionId, setSessionId] = React.useState<string | null>(null);
   const [loading, setLoading] = React.useState(true);
   const [createLivenessApiData, setCreateLivenessApiData] =
     React.useState<any>(null);
@@ -57,12 +56,12 @@ export default function App() {
 
   const handleAnalysisComplete = async () => {
     console.log('handleAnalysisComplete')
-    // var rekognition = new AWS.Rekognition();
-    // var params: any = {
-    //   SessionId: sessionId
-    // };
-    // const resp = await rekognition.getFaceLivenessSessionResults(params).promise();
-    // console.log('FaceLiveness data', resp);
+    var rekognition = new AWS.Rekognition();
+    var params: any = {
+      SessionId: sessionId
+    };
+    const resp = await rekognition.getFaceLivenessSessionResults(params).promise();
+    console.log('FaceLiveness data', resp);
   };
 
   return (
