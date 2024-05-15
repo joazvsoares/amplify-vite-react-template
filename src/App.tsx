@@ -45,7 +45,7 @@ export default function App() {
         .then((data: any) => {
           setCreateLivenessApiData(data);
           setLoading(false);
-          // setSessionId(data.sessionId);
+          setSessionId(data.sessionId);
         })
 
     };
