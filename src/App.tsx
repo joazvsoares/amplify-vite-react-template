@@ -10,7 +10,7 @@ Amplify.configure(awsexports);
 
 export default function App() {
 
-  const [sessionId, setSessionId] = React.useState<string | null>(null);
+  // const [sessionId, setSessionId] = React.useState<string | null>(null);
   const [loading, setLoading] = React.useState(true);
   const [createLivenessApiData, setCreateLivenessApiData] =
     React.useState<any>(null);
@@ -45,7 +45,7 @@ export default function App() {
         .then((data: any) => {
           setCreateLivenessApiData(data);
           setLoading(false);
-          setSessionId(data.sessionId);
+          // setSessionId(data.sessionId);
         })
 
     };
