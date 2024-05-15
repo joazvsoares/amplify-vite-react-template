@@ -20,6 +20,7 @@ export default function App() {
     const query = new URLSearchParams(location.search);
     if (query.has('token'))
       setAccessToken(query.get('token') as string);
+    else alert('Informe o accesstoken no paramtro token');
   }, [])
 
   React.useEffect(() => {
