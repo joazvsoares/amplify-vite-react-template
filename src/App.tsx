@@ -80,10 +80,12 @@ export default function App() {
       colors: {
         background: {
           primary: {
-            value: tokens.colors.neutral['90'].value,
+            // value: tokens.colors.neutral['90'].value,
+            value: '#058078',
           },
           secondary: {
-            value: tokens.colors.neutral['100'].value,
+            // value: tokens.colors.neutral['100'].value,
+            value: '#985699',
           },
         },
         font: {
@@ -126,7 +128,7 @@ export default function App() {
           <Text>{error?.error.message}</Text>
           <Button
             colorTheme="error"
-            onClick={() => setSuccessful(null)}>Tentar novamente?</Button>
+            onClick={() => () => window.location.reload()}>Tentar novamente?</Button>
         </Flex>
       </Flex>
     );
@@ -213,11 +215,12 @@ export default function App() {
           >
             <Icon height={150} width={150} color={'red'} as={MdError} />
             <Flex
+              gap={'1rem'}
               marginTop={20}
               direction="row">
               <Button
                 colorTheme="info"
-                onClick={() => setSuccessful(null)}
+                onClick={() => window.location.reload()}
               >
                 Tentar novamente
               </Button>
@@ -237,26 +240,19 @@ export default function App() {
           loading ? (
             <Loader filledColor="white" />
           ) : (
-            <Flex
-              direction="column"
-              justifyContent="center"
-              alignItems="center"
-              style={{
-                backgroundColor: '#058078',
-                height: '100vh'
-              }}>
-              <FaceLivenessDetector
-                disableStartScreen={true}
-                sessionId={createLivenessApiData.sessionId}
-                region="us-east-1"
-                onAnalysisComplete={handleAnalysisComplete}
-                displayText={dictionary['pt']}
-                onError={setError}
-                components={{
-                  ErrorView: CustomError,
-                }}
-              />
-            </Flex>
+
+            <FaceLivenessDetector
+              disableStartScreen={true}
+              sessionId={createLivenessApiData.sessionId}
+              region="us-east-1"
+              onAnalysisComplete={handleAnalysisComplete}
+              displayText={dictionary['pt']}
+              onError={setError}
+              components={{
+                ErrorView: CustomError,
+              }}
+            />
+
           )
         )
       }
