@@ -255,7 +255,7 @@ export default function App() {
             <Loader filledColor="white" />
           ) : (
             <FaceLivenessDetector
-              disableStartScreen={false}
+              disableStartScreen={true}
               sessionId={createLivenessApiData.sessionId}
               region="us-east-1"
               onAnalysisComplete={handleAnalysisComplete}
