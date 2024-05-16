@@ -227,7 +227,7 @@ export default function App() {
             }}
           >
             <Icon height={150} width={150} color={'red'} as={MdError} />
-            <Heading color={'red'}>Não foi possivel analisar seu rosto!</Heading>
+            <Heading color={'red'}>Não foi possível analisar seu rosto!</Heading>
             <Flex
               gap={'1rem'}
               marginTop={20}
