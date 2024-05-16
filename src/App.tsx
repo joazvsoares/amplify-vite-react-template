@@ -247,7 +247,10 @@ export default function App() {
               region="us-east-1"
               onAnalysisComplete={handleAnalysisComplete}
               displayText={dictionary['pt']}
-              onError={setError}
+              onError={(error) => {
+                console.log('ERR', error)
+                setError(error);
+              }}
               components={{
                 ErrorView: CustomError,
               }}
