@@ -10,13 +10,62 @@ const dictionary: any = {
   // use default strings for english
   en: null,
   pt: {
-    photosensitivyWarningHeadingText: 'Advertencia de fotosensibilidade',
-    photosensitivyWarningBodyText:
-      'Esta verificação mostra luzes coloridas. Tenha cuidado se você é fotossensível.',
-    goodFitCaptionText: 'Bom encaixe',
-    tooFarCaptionText: 'Longe demais',
-    hintCenterFaceText: 'Centralize seu rosto',
-    startScreenBeginCheckText: 'Começar a verificação',
+    errorLabelText: "Erro",
+    connectionTimeoutHeaderText: "Tempo limite de conexão",
+    connectionTimeoutMessageText: "A conexão expirou.",
+    timeoutHeaderText: "Tempo limite",
+    "timeoutMessageText": "O rosto não coube completamente dentro do oval dentro do limite de tempo. Tente novamente e preencha completamente o oval com o rosto dentro dele.",
+    "faceDistanceHeaderText": "Movimento para frente detectado",
+    "faceDistanceMessageText": "Evite se mover mais perto ao conectar.",
+    "multipleFacesHeaderText": "Múltiplos rostos detectados",
+    "multipleFacesMessageText": "Certifique-se de que apenas um rosto esteja presente em frente à câmera ao conectar.",
+    "clientHeaderText": "Erro do cliente",
+    "clientMessageText": "Falha na verificação devido a um problema do cliente",
+    "serverHeaderText": "Problema do servidor",
+    "serverMessageText": "Não é possível concluir a verificação devido a um problema do servidor",
+    "landscapeHeaderText": "Orientação paisagem não suportada",
+    "landscapeMessageText": "Gire seu dispositivo para a orientação retrato (vertical).",
+    "portraitMessageText": "Garanta que seu dispositivo permaneça na orientação retrato (vertical) durante a duração da verificação.",
+    "tryAgainText": "Tentar novamente",
+    "cameraMinSpecificationsHeadingText": "Câmera não atende às especificações mínimas",
+    "cameraMinSpecificationsMessageText": "A câmera deve suportar uma resolução mínima de 320*240 e 15 quadros por segundo.",
+    "cameraNotFoundHeadingText": "Câmera não está acessível.",
+    "cameraNotFoundMessageText": "Verifique se uma câmera está conectada e se não há outro aplicativo usando a câmera. Você pode ter que ir para as configurações para conceder permissões de câmera e fechar todas as instâncias do seu navegador e tentar novamente.",
+    "a11yVideoLabelText": "Webcam para verificação de autenticidade",
+    "cancelLivenessCheckText": "Cancelar verificação de autenticidade",
+    "goodFitCaptionText": "Ajuste perfeito",
+    "goodFitAltText": "Ilustração do rosto de uma pessoa, encaixando perfeitamente dentro de um oval.",
+    "hintCenterFaceText": "Centralize o seu rosto",
+    "hintCenterFaceInstructionText": "Instrução: Antes de iniciar a verificação, certifique-se de que sua câmera está no centro do topo da tela e centralize seu rosto para a câmera. Quando a verificação começar, um oval aparecerá no centro. Você será solicitado a se mover para dentro do oval e depois solicitado a ficar parado. Após permanecer parado por alguns segundos, você deve ouvir a verificação completa.",
+    "hintFaceOffCenterText": "O rosto não está no oval, centralize seu rosto para a câmera.",
+    "hintMoveFaceFrontOfCameraText": "Mova o rosto na frente da câmera",
+    "hintTooManyFacesText": "Garanta que apenas um rosto esteja na frente da câmera",
+    "hintFaceDetectedText": "Rosto detectado",
+    "hintCanNotIdentifyText": "Mova o rosto na frente da câmera",
+    "hintTooCloseText": "Afaste-se",
+    "hintTooFarText": "Aproxime-se",
+    "hintConnectingText": "Conectando...",
+    "hintVerifyingText": "Verificando...",
+    "hintCheckCompleteText": "Verificação completa",
+    "hintIlluminationTooBrightText": "Mova para uma área mais escura",
+    "hintIlluminationTooDarkText": "Mova para uma área mais clara",
+    "hintIlluminationNormalText": "Condições de iluminação normais",
+    "hintHoldFaceForFreshnessText": "Fique parado",
+    "hintMatchIndicatorText": "50% concluído. Continue se aproximando.",
+    "photosensitivityWarningBodyText": "Esta verificação pisca com cores diferentes. Tenha cuidado se você for sensível à luz.",
+    "photosensitivityWarningHeadingText": "Aviso de fotossensibilidade",
+    "photosensitivityWarningInfoText": "Algumas pessoas podem ter convulsões epilépticas quando expostas a luzes coloridas. Tenha cuidado se você, ou alguém da sua família, tiver uma condição epiléptica.",
+    "photosensitivityWarningLabelText": "Mais informações sobre fotossensibilidade",
+    "photosensitivyWarningBodyText": "Esta verificação pisca com cores diferentes. Tenha cuidado se você for sensível à luz.",
+    "photosensitivyWarningHeadingText": "Aviso de fotossensibilidade",
+    "photosensitivyWarningInfoText": "Algumas pessoas podem ter convulsões epilépticas quando expostas a luzes coloridas. Tenha cuidado se você, ou alguém da sua família, tiver uma condição epiléptica.",
+    "photosensitivyWarningLabelText": "Mais informações sobre fotossensibilidade",
+    "retryCameraPermissionsText": "Tentar novamente",
+    "recordingIndicatorText": "Gravando",
+    "startScreenBeginCheckText": "Iniciar verificação de vídeo",
+    "tooFarCaptionText": "Muito longe",
+    "tooFarAltText": "Ilustração do rosto de uma pessoa dentro de um oval; há uma lacuna entre o perímetro do rosto e os limites do oval.",
+    "waitingCameraPermissionText": "Esperando você permitir permissão de câmera."
   },
 };
 
@@ -26,7 +75,7 @@ export default function App() {
 
   const { tokens } = useTheme();
   const theme: Theme = {
-    name: 'Face Liveness Example Theme',
+    name: 'CarteiraIA',
     tokens: {
       colors: {
         background: {
@@ -54,7 +103,7 @@ export default function App() {
     },
   };
   // const [/*sessionId,*/ setSessionId] = React.useState<string | null>(null);
-  const [successful, setSuccessful] = useState(false);
+  const [successful, setSuccessful] = useState<boolean | null>(null);
   const [loading, setLoading] = useState(true);
   const [createLivenessApiData, setCreateLivenessApiData] = useState<any>(null);
   const [accessToken, setAccessToken] = useState('');
@@ -126,18 +175,12 @@ export default function App() {
 
   const handleAnalysisComplete = async () => {
     console.log('handleAnalysisComplete');
-    // var rekognition = new Rekognition();
-    // var params: any = {
-    //   SessionId: sessionId
-    // };
-    // const resp = await rekognition.getFaceLivenessSessionResults(params).promise();
-    // console.log('FaceLiveness data', resp);
+
     setSuccessful(true);
   };
 
   return (
     <ThemeProvider theme={theme}>
-
       {
         successful ? <Flex
           direction="column"
@@ -145,25 +188,34 @@ export default function App() {
           alignItems="center"
           style={{
             backgroundColor: 'white',
-            flex: 1
+            height: '100vh'
           }}
         >
-          <Icon height={50} width={50} as={MdCheckCircle} />
+          <Icon height={150} width={150} color={'#058078'} as={MdCheckCircle} />
         </Flex>
           : loading ? (
             <Loader />
           ) : (
-            <FaceLivenessDetector
-              disableStartScreen={true}
-              sessionId={createLivenessApiData.sessionId}
-              region="us-east-1"
-              onAnalysisComplete={handleAnalysisComplete}
-              displayText={dictionary['pt']}
-              onError={setError}
-              components={{
-                ErrorView: CustomError,
-              }}
-            />
+            <Flex
+              direction="column"
+              justifyContent="center"
+              alignItems="center"
+              style={{
+                backgroundColor: 'white',
+                height: '100vh'
+              }}>
+              <FaceLivenessDetector
+                disableStartScreen={true}
+                sessionId={createLivenessApiData.sessionId}
+                region="us-east-1"
+                onAnalysisComplete={handleAnalysisComplete}
+                displayText={dictionary['pt']}
+                onError={setError}
+                components={{
+                  ErrorView: CustomError,
+                }}
+              />
+            </Flex>
           )
       }
     </ThemeProvider>
