@@ -143,6 +143,11 @@ export default function App() {
 
   useEffect(() => {
 
+    if (successful) {
+      setTimeout(() => {
+        sendMessageToApp('CLOSE');
+      }, 3000);
+    }
 
   }, [successful])
 
@@ -183,6 +188,14 @@ export default function App() {
     setSuccessful(false);
   };
 
+  const sendMessageToApp = (message: string) => {
+    const ReactNativeWebView = (window as any).ReactNativeWebView;
+    console.log('SEND', ReactNativeWebView);
+    if (ReactNativeWebView)
+      ReactNativeWebView.postMessage(message);
+    else window.close();
+  }
+
   return (
     <ThemeProvider theme={theme}>
       {
@@ -214,6 +227,7 @@ export default function App() {
             }}
           >
             <Icon height={150} width={150} color={'red'} as={MdError} />
+            <Heading>Não foi possivel analisar seu rosto!</Heading>
             <Flex
               gap={'1rem'}
               marginTop={20}
@@ -227,7 +241,7 @@ export default function App() {
               <Button
                 colorTheme="error"
                 loadingText=""
-                onClick={() => alert('hello')}
+                onClick={() => sendMessageToApp('CLOSE')}
               >
                 Cancelar
               </Button>
@@ -240,13 +254,13 @@ export default function App() {
           loading ? (
             <Loader filledColor="white" />
           ) : (
-
             <FaceLivenessDetector
-              disableStartScreen={true}
+              disableStartScreen={false}
               sessionId={createLivenessApiData.sessionId}
               region="us-east-1"
               onAnalysisComplete={handleAnalysisComplete}
               displayText={dictionary['pt']}
+              onUserCancel={() => sendMessageToApp('CLOSE')}
               onError={(error) => {
                 console.log('ERR', error)
                 setError(error);
