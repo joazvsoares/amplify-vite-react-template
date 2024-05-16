@@ -2,7 +2,7 @@ import { useCallback, useState, useEffect } from 'react';
 import { Amplify } from 'aws-amplify';
 import { FaceLivenessDetector } from '@aws-amplify/ui-react-liveness';
 import { Button, Flex, Heading, Icon, Loader, Text, Theme, ThemeProvider, useTheme } from '@aws-amplify/ui-react';
-import { MdCheckCircle } from 'react-icons/md';
+import { MdCheckCircle, MdError } from 'react-icons/md';
 import '@aws-amplify/ui-react/styles.css';
 import awsexports from './aws-exports';
 
@@ -182,20 +182,58 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       {
-        successful ? <Flex
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-          style={{
-            backgroundColor: 'white',
-            height: '100vh',
-            width: '100vw'
-          }}
-        >
-          <Icon height={150} width={150} color={'#058078'} as={MdCheckCircle} />
-        </Flex>
-          : loading ? (
-            <Loader />
+        successful === true && (
+          <Flex
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+            style={{
+              backgroundColor: 'white',
+              height: '100vh',
+              width: '100vw'
+            }}
+          >
+            <Icon height={150} width={150} color={'#058078'} as={MdCheckCircle} />
+          </Flex>
+        )
+      }
+      {
+        successful === false && (
+          <Flex
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+            style={{
+              backgroundColor: 'white',
+              height: '100vh',
+              width: '100vw'
+            }}
+          >
+            <Icon height={150} width={150} color={'red'} as={MdError} />
+            <Flex
+              marginTop={20}
+              direction="row">
+              <Button
+                colorTheme="info"
+                onClick={() => setSuccessful(false)}
+              >
+                Tentar novamente
+              </Button>
+              <Button
+                colorTheme="error"
+                loadingText=""
+                onClick={() => alert('hello')}
+              >
+                Cancelar
+              </Button>
+            </Flex>
+          </Flex>
+        )
+      }
+      {
+        successful === null && (
+          loading ? (
+            <Loader filledColor="white" />
           ) : (
             <Flex
               direction="column"
@@ -218,6 +256,7 @@ export default function App() {
               />
             </Flex>
           )
+        )
       }
     </ThemeProvider>
   );
