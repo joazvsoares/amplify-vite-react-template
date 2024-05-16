@@ -3,7 +3,7 @@ import { Amplify } from 'aws-amplify';
 import { FaceLivenessDetector } from '@aws-amplify/ui-react-liveness';
 import { Button, Flex, Heading, Icon, Loader, Text, Theme, ThemeProvider, useTheme } from '@aws-amplify/ui-react';
 import { MdCheckCircle } from 'react-icons/md';
-import '@aws-amplify/ui-react/styles.css';
+// import '@aws-amplify/ui-react/styles.css';
 import awsexports from './aws-exports';
 
 const dictionary: any = {
@@ -124,7 +124,7 @@ export default function App() {
         >
           <Heading color="black">{error?.state}</Heading>
           <Text>{error?.error.message}</Text>
-          <Button>Try again?</Button>
+          <Button>Tentar novamente?</Button>
         </Flex>
       </Flex>
     );
@@ -188,7 +188,8 @@ export default function App() {
           alignItems="center"
           style={{
             backgroundColor: 'white',
-            height: '100vh'
+            height: '100vh',
+            width: '100vw'
           }}
         >
           <Icon height={150} width={150} color={'#058078'} as={MdCheckCircle} />
