@@ -3,7 +3,7 @@ import { Amplify } from 'aws-amplify';
 import { FaceLivenessDetector } from '@aws-amplify/ui-react-liveness';
 import { Button, Flex, Heading, Icon, Loader, Text, Theme, ThemeProvider, useTheme } from '@aws-amplify/ui-react';
 import { MdCheckCircle } from 'react-icons/md';
-// import '@aws-amplify/ui-react/styles.css';
+import '@aws-amplify/ui-react/styles.css';
 import awsexports from './aws-exports';
 
 const dictionary: any = {
