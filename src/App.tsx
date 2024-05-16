@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import { Amplify } from 'aws-amplify';
 import { FaceLivenessDetector } from '@aws-amplify/ui-react-liveness';
 import { Button, Flex, Heading, Icon, Loader, Text, Theme, ThemeProvider, useTheme } from '@aws-amplify/ui-react';
