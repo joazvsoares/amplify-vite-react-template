@@ -124,7 +124,9 @@ export default function App() {
         >
           <Heading color="black">{error?.state}</Heading>
           <Text>{error?.error.message}</Text>
-          <Button>Tentar novamente?</Button>
+          <Button
+            colorTheme="error"
+            onClick={() => setSuccessful(null)}>Tentar novamente?</Button>
         </Flex>
       </Flex>
     );
@@ -134,7 +136,7 @@ export default function App() {
     const query = new URLSearchParams(window.location.search);
     if (query.has('token'))
       setAccessToken(query.get('token') as string);
-    else alert('Informe o accesstoken no paramtro token');
+    else alert('Informe o accesstoken no parametro token');
   }, [])
 
   useEffect(() => {
@@ -176,7 +178,7 @@ export default function App() {
   const handleAnalysisComplete = async () => {
     console.log('handleAnalysisComplete');
 
-    setSuccessful(true);
+    setSuccessful(false);
   };
 
   return (
@@ -215,7 +217,7 @@ export default function App() {
               direction="row">
               <Button
                 colorTheme="info"
-                onClick={() => setSuccessful(false)}
+                onClick={() => setSuccessful(null)}
               >
                 Tentar novamente
               </Button>
@@ -240,7 +242,7 @@ export default function App() {
               justifyContent="center"
               alignItems="center"
               style={{
-                backgroundColor: 'white',
+                backgroundColor: '#058078',
                 height: '100vh'
               }}>
               <FaceLivenessDetector
